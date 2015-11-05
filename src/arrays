@@ -1,0 +1,6 @@
+var tab = [1,2,3];
+tab.forEach(it => console.log(it*2));
+
+var nums = evens.map((v, i) => v + i);
+var pairs = evens.map(v => ({even: v, odd: v + 1}));
+
