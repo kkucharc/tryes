@@ -12,35 +12,8 @@
     <script src="js/app.js"></script>
 </head>
 <body>
-<script type="text/javascript"  >
-function addClassBabel(code){
-  $('#class-code-babel').text(code);
-}
-
-$(document).ready(function() {
-    $('#class-button').click(function() {
-      var classCode = $('#class-code').text().trim();
-      var map = {"code": classCode};
-      console.log(classCode);
-        $.ajax({
-          type: "POST",
-          url: "http://localhost:8081/parse/babel",
-          data: JSON.stringify(map),
-          success: function(res){debugger;
-            console.log("success " + res);
-            addClassBabel(res);
-          },
-          error: function(error){
-            console.log(error);
-          },
-          dataType: "text",
-          contentType: "application/json",
-          origin: "http://localhost"
-        });
-    });
-});
-
-
+<script type="text/javascript">
+    $(document).ready([listenButton, listenJSTransformButton, listenES6transpilerButton, listenTraceur]);
 </script>
 
 <div class="row">
@@ -52,24 +25,66 @@ $(document).ready(function() {
 <div class="row">
     <div class="large-12 columns">
         <div class="example">
-            <h3>ES6 classes</h3>
-
+            <h3>ES6 code</h3>
+            <textarea placeholder="Write your code..."></textarea>
             <pre><code id="class-code" class="language-js">
                 let log = console.log("Asfd");
             </code></pre>
-            <a href="#" id="class-button" class="small radius button">Translate class</a><br/>
+            <div class="row">
+                <div class="medium-3 columns">
+                    <a id="class-button-babel" class="small radius button">Babel</a></div>
+                <div class="medium-3 columns">
+                    <a id="class-button-jstransform" class="small radius button">JSTransform</a></div>
+                <div class="medium-3 columns">
+                    <a id="class-button-estranspiler" class="small radius button">ES6transpiler</a></div>
+                <div class="medium-3 columns end">
+                    <a id="class-button-traceur" class="small radius button">Traceur</a>
+                </div>
+            </div>
+
+            <div class="">
+
+            </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="large-12 columns">
-        <div id="example-class">
-            <pre><code id="class-code-babel" class="language-js">
 
+<div class="row hidden-block" id="div-babel">
+    <div class="large-12 columns">
+        <div id="example-class-babel" class="hidden-block`">
+            <pre><code id="code-babel" class="language-js">
             </code></pre>
         </div>
     </div>
 </div>
+
+<div class="row hidden-block" id="div-jstransorm">
+    <div class="large-12 columns">
+        <div>
+            <pre><code id="code-jstransform" class="language-js">
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<div class="row hidden-block" id="div-es6transpiler">
+    <div class="large-12 columns">
+        <div>
+            <pre><code id="code-es6transpiler" class="language-js">
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<div class="row hidden-block" id="div-traceur">
+    <div class="large-12 columns">
+        <div>
+            <pre><code id="code-traceur" class="language-js">
+            </code></pre>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="large-8 medium-8 columns">
         <h5>Here&rsquo;s your basic grid:</h5>
