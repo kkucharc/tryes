@@ -20,12 +20,11 @@ app.use(allowCrossDomain);
 
 app.post('/parse/:parser', function (request, response) {
   var parser = request.params.parser;
+  console.log(parser);
 
   debugger;
   if (!request.body) return response.sendStatus(400);
 
-console.log("code " + request.body.code);
-console.log("code " + request.body);
   if (parser) {
     try {
       var transpileFun = transpile[parser];

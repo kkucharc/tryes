@@ -6,96 +6,63 @@ function addClass(code, placeString, codePlaceString) {
   place.show();
   codePlace.text(code);
   Prism.highlightElement(codePlace[0]);
+  location.hash = "#" + placeString;
+}
+
+function generateRequest(transpiler, body){
+   return $.ajax({
+      type: "POST",
+      url: "http://localhost:8081/parse/" + transpiler,
+      data: JSON.stringify(body),
+      success: function (res) {
+        console.log("success " + res);
+        addClass(res, 'div-'+ transpiler, 'code-'+ transpiler);
+      },
+      error: function (error) {
+        console.log(error);
+      },
+      dataType: "text",
+      contentType: "application/json",
+      origin: "http://localhost"
+    });
+}
+
+function editor(){
+  $('#reload').click(function () {
+    console.log($('#dialog')[0].value);
+    var insertText = $('#dialog')[0].value;
+    var codePlace = $('#code');
+    codePlace.text(insertText);
+    Prism.highlightElement(codePlace[0]);
+  });
 }
 
 function listenButton(){
-  $('#class-button-babel').click(function () {
-    var classCode = $('#class-code').text().trim();
+  $('#button-babel').click(function () {
+    var classCode = $('#code').text().trim();
     var map = {"code": classCode};
     console.log(classCode);
-    $.ajax({
-      type: "POST",
-      url: "http://localhost:8081/parse/babel",
-      data: JSON.stringify(map),
-      success: function (res) {
-        console.log("success " + res);
-        addClass(res, 'div-babel', 'code-babel');
-      },
-      error: function (error) {
-        console.log(error);
-      },
-      dataType: "text",
-      contentType: "application/json",
-      origin: "http://localhost"
-    });
+    generateRequest("babel", map);
   });
-}
 
-function listenJSTransformButton(){
-  $('#class-button-jstransform').click(function () {
-    var classCode = $('#class-code').text().trim();
+  $('#button-jstransform').click(function () {
+    var classCode = $('#code').text().trim();
     var map = {"code": classCode};
     console.log(classCode);
-    $.ajax({
-      type: "POST",
-      url: "http://localhost:8081/parse/jstransform",
-      data: JSON.stringify(map),
-      success: function (res) {
-        console.log("success " + res);
-        addClass(res, 'div-jstransorm', 'code-jstransorm');
-      },
-      error: function (error) {
-        console.log(error);
-      },
-      dataType: "text",
-      contentType: "application/json",
-      origin: "http://localhost"
-    });
+    generateRequest("jstransform", map);
   });
-}
 
-function listenES6transpilerButton(){
-  $('#class-button-estranspile').click(function () {
-    var classCode = $('#class-code').text().trim();
+  $('#button-es6transpiler').click(function () {
+    var classCode = $('#code').text().trim();
     var map = {"code": classCode};
     console.log(classCode);
-    $.ajax({
-      type: "POST",
-      url: "http://localhost:8081/parse/es6transpiler",
-      data: JSON.stringify(map),
-      success: function (res) {
-        console.log("success " + res);
-        addClass(res, 'div-es6transpiler', 'code-es6transpiler');
-      },
-      error: function (error) {
-        console.log(error);
-      },
-      dataType: "text",
-      contentType: "application/json",
-      origin: "http://localhost"
-    });
+    generateRequest("es6transpiler", map);
   });
-}
 
-function listenTraceur(){
-  $('#class-button-estranspile').click(function () {
-    var classCode = $('#class-code').text().trim();
+  $('#button-traceur').click(function () {
+    var classCode = $('#code').text().trim();
     var map = {"code": classCode};
     console.log(classCode);
-    $.ajax({
-      type: "POST",
-      url: "http://localhost:8081/parse/traceur",
-      data: JSON.stringify(map),
-      success: function (res) {
-        console.log("success " + res);
-        addClass(res, 'div-traceur');
-      },
-      error: function (error) {
-        console.log(error);
-      },
-      dataType: "text",
-      contentType: "application/json",
-      origin: "http://localhost"
-    });
+    generateRequest("traceur", map);
   });
 }

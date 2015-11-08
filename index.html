@@ -13,7 +13,7 @@
 </head>
 <body>
 <script type="text/javascript">
-    $(document).ready([listenButton, listenJSTransformButton, listenES6transpilerButton, listenTraceur]);
+    $(document).ready([editor,listenButton]);
 </script>
 
 <div class="row">
@@ -26,24 +26,21 @@
     <div class="large-12 columns">
         <div class="example">
             <h3>ES6 code</h3>
-            <textarea placeholder="Write your code..."></textarea>
-            <pre><code id="class-code" class="language-js">
+            <textarea id="dialog" placeholder="Write your code..."></textarea>
+            <a id="reload" class="small radius button">Reload</a>
+            <pre><code id="code" class="language-js">
                 let log = console.log("Asfd");
             </code></pre>
             <div class="row">
                 <div class="medium-3 columns">
-                    <a id="class-button-babel" class="small radius button">Babel</a></div>
+                    <a id="button-babel" class="small radius button">Babel</a></div>
                 <div class="medium-3 columns">
-                    <a id="class-button-jstransform" class="small radius button">JSTransform</a></div>
+                    <a id="button-jstransform" class="small radius button">JSTransform</a></div>
                 <div class="medium-3 columns">
-                    <a id="class-button-estranspiler" class="small radius button">ES6transpiler</a></div>
+                    <a id="button-es6transpiler" class="small radius button">ES6transpiler</a></div>
                 <div class="medium-3 columns end">
-                    <a id="class-button-traceur" class="small radius button">Traceur</a>
+                    <a id="button-traceur" class="small radius button">Traceur</a>
                 </div>
-            </div>
-
-            <div class="">
-
             </div>
         </div>
     </div>
@@ -51,15 +48,17 @@
 
 <div class="row hidden-block" id="div-babel">
     <div class="large-12 columns">
-        <div id="example-class-babel" class="hidden-block`">
+        <h3>Babel transpilation</h3>
+        <div>
             <pre><code id="code-babel" class="language-js">
             </code></pre>
         </div>
     </div>
 </div>
 
-<div class="row hidden-block" id="div-jstransorm">
+<div class="row hidden-block" id="div-jstransform">
     <div class="large-12 columns">
+        <h3>JSTransform transpilation</h3>
         <div>
             <pre><code id="code-jstransform" class="language-js">
             </code></pre>
@@ -69,6 +68,7 @@
 
 <div class="row hidden-block" id="div-es6transpiler">
     <div class="large-12 columns">
+        <h3>ES6Transpiler transpilation</h3>
         <div>
             <pre><code id="code-es6transpiler" class="language-js">
             </code></pre>
@@ -78,6 +78,7 @@
 
 <div class="row hidden-block" id="div-traceur">
     <div class="large-12 columns">
+        <h3>Traceur transpilation</h3>
         <div>
             <pre><code id="code-traceur" class="language-js">
             </code></pre>
@@ -86,135 +87,89 @@
 </div>
 
 <div class="row">
-    <div class="large-8 medium-8 columns">
-        <h5>Here&rsquo;s your basic grid:</h5>
-        <!-- Grid Example -->
-
-        <div class="row">
-            <div class="large-12 columns">
-                <div class="callout panel">
-                    <p><strong>This is a twelve column section in a row.</strong> Each of these includes a div.panel
-                        element so you can see where the columns are - it's not required at all for the grid.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 medium-6 columns">
-                <div class="callout panel">
-                    <p>Six columns</p>
-                </div>
-            </div>
-            <div class="large-6 medium-6 columns">
-                <div class="callout panel">
-                    <p>Six columns</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-4 medium-4 small-4 columns">
-                <div class="callout panel">
-                    <p>Four columns</p>
-                </div>
-            </div>
-            <div class="large-4 medium-4 small-4 columns">
-                <div class="callout panel">
-                    <p>Four columns</p>
-                </div>
-            </div>
-            <div class="large-4 medium-4 small-4 columns">
-                <div class="callout panel">
-                    <p>Four columns</p>
-                </div>
-            </div>
-        </div>
-
-        <hr/>
-
-        <h5>We bet you&rsquo;ll need a form somewhere:</h5>
-
-        <form>
-            <div class="row">
-                <div class="large-12 columns">
-                    <label>Input Label</label>
-                    <input type="text" placeholder="large-12.columns"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-4 medium-4 columns">
-                    <label>Input Label</label>
-                    <input type="text" placeholder="large-4.columns"/>
-                </div>
-                <div class="large-4 medium-4 columns">
-                    <label>Input Label</label>
-                    <input type="text" placeholder="large-4.columns"/>
-                </div>
-                <div class="large-4 medium-4 columns">
-                    <div class="row collapse">
-                        <label>Input Label</label>
-
-                        <div class="small-9 columns">
-                            <input type="text" placeholder="small-9.columns"/>
-                        </div>
-                        <div class="small-3 columns">
-                            <span class="postfix">.com</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-12 columns">
-                    <label>Select Box</label>
-                    <select>
-                        <option value="husker">Husker</option>
-                        <option value="starbuck">Starbuck</option>
-                        <option value="hotdog">Hot Dog</option>
-                        <option value="apollo">Apollo</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-6 medium-6 columns">
-                    <label>Choose Your Favorite</label>
-                    <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Radio
-                    1</label>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Radio
-                    2</label>
-                </div>
-                <div class="large-6 medium-6 columns">
-                    <label>Check these out</label>
-                    <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-                    <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-12 columns">
-                    <label>Textarea Label</label>
-                    <textarea placeholder="small-12.columns"></textarea>
-                </div>
-            </div>
-        </form>
+    <div class="large-12 columns">
+        <h2>Examples!</h2>
     </div>
+</div>
 
-    <div class="large-4 medium-4 columns">
-        <h5>Try one of these buttons:</h5>
-
-        <p><a href="#" class="small button">Simple Button</a><br/>
-            <a href="#" class="small radius button">Radius Button</a><br/>
-            <a href="#" class="small round button">Round Button</a><br/>
-            <a href="#" class="medium success button">Success Btn</a><br/>
-            <a href="#" class="medium alert button">Alert Btn</a><br/>
-            <a href="#" class="medium secondary button">Secondary Btn</a></p>
-
-        <div class="panel">
-            <h5>So many components, girl!</h5>
-
-            <p>A whole kitchen sink of goodies comes with Foundation. Check out the docs to see them all, along with
-                details on making them your own.</p>
-            <a href="http://foundation.zurb.com/docs/" class="small button">Go to Foundation Docs</a>
+<div class="row">
+    <div class="large-12 columns">
+        <h3>Classes</h3>
+        <div class="example">
+            <h3>ES6 code</h3>
+            <pre><code id="class-code" class="language-js">
+    class Pet {
+        constructor(color){
+            this.color = color;
+        }
+        get color(){
+            return this.color;
+        }
+        set color(color){
+            this.color = color;
+        }
+    }
+    class Cat extends Pet{
+        constructor(fav_food, color){
+            super(color);
+            this.fav_food = fav_food;
+        }
+    }
+            </code></pre>
+            <div class="row">
+                <div class="medium-3 columns">
+                    <a id="class-button-babel" class="small radius button">Babel</a></div>
+                <div class="medium-3 columns">
+                    <a id="class-button-jstransform" class="small radius button">JSTransform</a></div>
+                <div class="medium-3 columns">
+                    <a id="class-button-es6transpiler" class="small radius button">ES6transpiler</a></div>
+                <div class="medium-3 columns end">
+                    <a id="class-button-traceur" class="small radius button">Traceur</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<div class="row hidden-block" id="div-class-babel">
+    <div class="large-12 columns">
+        <h3>Classes: Babel transpilation</h3>
+        <div>
+            <pre><code id="code-class-babel" class="language-js">
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<div class="row hidden-block" id="div-class-jstransform">
+    <div class="large-12 columns">
+        <h3>Classes: JSTransform transpilation</h3>
+        <div>
+            <pre><code id="code-class-jstransform" class="language-js">
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<div class="row hidden-block" id="div-class-es6transpiler">
+    <div class="large-12 columns">
+        <h3>Classes: ES6Transpiler transpilation</h3>
+        <div>
+            <pre><code id="code-class-es6transpiler" class="language-js">
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<div class="row hidden-block" id="div-class-traceur">
+    <div class="large-12 columns">
+        <h3>Classes: Traceur transpilation</h3>
+        <div>
+            <pre><code id="code-class-traceur" class="language-js">
+            </code></pre>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
