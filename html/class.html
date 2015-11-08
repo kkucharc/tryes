@@ -1,15 +1,15 @@
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
+<!DOCTYPE html>
+<html>
+<head lang="en">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ES6</title>
-    <link rel="stylesheet" href="css/app.css"/>
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="js/prism.js"></script>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/foundation/js/foundation.min.js"></script>
-    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="../css/app.css"/>
+    <script src="../bower_components/modernizr/modernizr.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/foundation/js/foundation.min.js"></script>
+    <script src="../js/app.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -18,18 +18,33 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <h1>Welcome to ES6 -> ES5 Transpilers!</h1>
+        <h1>Classes example!</h1>
     </div>
 </div>
 
 <div class="row">
     <div class="large-12 columns">
+        <h3>Classes</h3>
         <div class="example">
             <h3>ES6 code</h3>
-            <textarea id="dialog" placeholder="Write your code..."></textarea>
-            <a id="reload" class="small radius button">Reload</a>
             <pre><code id="code" class="language-js">
-                let log = console.log("Asfd");
+class Pet {
+    constructor(color) {
+        this.color = color;
+    }
+        get color(){
+        return this.color;
+    }
+        set color(color){
+        this.color = color;
+    }
+}
+class Cat extends Pet{
+    constructor(fav_food, color) {
+        super(color);
+        this.fav_food = fav_food;
+    }
+}
             </code></pre>
             <div class="row">
                 <div class="medium-3 columns">
@@ -48,8 +63,7 @@
 
 <div class="row hidden-block" id="div-babel">
     <div class="large-12 columns">
-        <h3>Babel transpilation</h3>
-
+        <h3>Classes: Babel transpilation</h3>
         <div>
             <pre><code id="code-babel" class="language-js">
             </code></pre>
@@ -59,8 +73,7 @@
 
 <div class="row hidden-block" id="div-jstransform">
     <div class="large-12 columns">
-        <h3>JSTransform transpilation</h3>
-
+        <h3>Classes: JSTransform transpilation</h3>
         <div>
             <pre><code id="code-jstransform" class="language-js">
             </code></pre>
@@ -68,10 +81,9 @@
     </div>
 </div>
 
-<div class="row hidden-block" id="div-es6transpiler">
+<div class="row hidden-block" id="div-s6transpiler">
     <div class="large-12 columns">
-        <h3>ES6Transpiler transpilation</h3>
-
+        <h3>Classes: ES6Transpiler transpilation</h3>
         <div>
             <pre><code id="code-es6transpiler" class="language-js">
             </code></pre>
@@ -81,26 +93,13 @@
 
 <div class="row hidden-block" id="div-traceur">
     <div class="large-12 columns">
-        <h3>Traceur transpilation</h3>
-
+        <h3>Classes: Traceur transpilation</h3>
         <div>
             <pre><code id="code-traceur" class="language-js">
             </code></pre>
         </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="large-12 columns">
-        <h2>Examples!</h2>
-        <ul>
-            <li><h3><a href="html/class.html">Classes</a></h3></li>
-            <li><h3><a href="html/arrows.html">Arrows</a></h3></li>
-        </ul>
-    </div>
-</div>
-
-
 
 </body>
 </html>
