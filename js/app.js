@@ -1,43 +1,37 @@
 $(document).foundation();
+var codeArray = {};
 
 function addClass(code, placeString, codePlaceString) {
-  var place = $('#'+placeString);
-  var codePlace = $('#'+codePlaceString);
+  var place = $('#' + placeString);
+  var codePlace = $('#' + codePlaceString);
   place.show();
   codePlace.text(code);
   Prism.highlightElement(codePlace[0]);
   location.hash = "#" + placeString;
 }
 
-function generateRequest(transpiler, body){
-   return $.ajax({
-      type: "POST",
-      url: "http://localhost:8081/parse/" + transpiler,
-      data: JSON.stringify(body),
-      success: function (res) {
-        console.log("success " + res);
-        addClass(res, 'div-'+ transpiler, 'code-'+ transpiler);
-      },
-      error: function (error) {
-        console.log(error);
-      },
-      dataType: "text",
-      contentType: "application/json",
-      origin: "http://localhost"
-    });
-}
 
-function editor(){
-  $('#reload').click(function () {
-    console.log($('#dialog')[0].value);
-    var insertText = $('#dialog')[0].value;
-    var codePlace = $('#code');
-    codePlace.text(insertText);
-    Prism.highlightElement(codePlace[0]);
+function generateRequest(transpiler, body) {
+  return $.ajax({
+    type: "POST",
+    url: "http://localhost:8081/parse/" + transpiler,
+    data: JSON.stringify(body),
+    success: function (res) {
+      console.log("success " + res);
+      addClass(res, 'div-' + transpiler, 'code-' + transpiler);
+      codeArray[transpiler] = res;
+    },
+    error: function (error) {
+      console.log(error);
+    },
+    dataType: "text",
+    contentType: "application/json",
+    origin: "http://localhost"
   });
 }
 
-function listenButton(){
+
+function listenButton() {
   $('#button-babel').click(function () {
     var classCode = $('#code').text().trim();
     var map = {"code": classCode};

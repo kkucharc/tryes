@@ -10,10 +10,12 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/runner.js"></script>
+    <script src="js/editor.js"></script>
 </head>
 <body>
 <script type="text/javascript">
-    $(document).ready([editor,listenButton]);
+    $(document).ready([editor,listenButton, runner]);
 </script>
 
 <div class="row">
@@ -54,16 +56,23 @@
             <pre><code id="code-babel" class="language-js">
             </code></pre>
         </div>
+        <a transpiler="babel" id="run-babel" class="run small radius button">Run!</a>
+        <div id="logger-babel" class="panel callout radius hidden-block">
+
+        </div>
     </div>
 </div>
 
 <div class="row hidden-block" id="div-jstransform">
     <div class="large-12 columns">
         <h3>JSTransform transpilation</h3>
-
         <div>
             <pre><code id="code-jstransform" class="language-js">
             </code></pre>
+        </div>
+        <a transpiler="jstransform" class="run small radius button">Run!</a>
+        <div id="logger-jstransform" class="panel callout radius hidden-block">
+
         </div>
     </div>
 </div>
@@ -76,6 +85,10 @@
             <pre><code id="code-es6transpiler" class="language-js">
             </code></pre>
         </div>
+        <a transpiler="es6transpiler" class="run small radius button">Run!</a>
+        <div id="logger-es6transpiler" class="panel callout radius hidden-block">
+
+        </div>
     </div>
 </div>
 
@@ -86,6 +99,10 @@
         <div>
             <pre><code id="code-traceur" class="language-js">
             </code></pre>
+        </div>
+        <a transpiler="traceur" class="run small radius button">Run!</a>
+        <div id="logger-traceur" class="panel callout radius hidden-block">
+
         </div>
     </div>
 </div>
